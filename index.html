@@ -1,0 +1,141 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="IELTS-style Reading practice with three original passages, 37 questions and a 60-minute timer.">
+  <title>IELTS Reading Practice | Practice Hub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="#" aria-label="IELTS Reading Practice home">
+        <span class="brand-mark">R</span>
+        <span><strong>READING</strong><small>PRACTICE HUB</small></span>
+      </a>
+      <div class="topbar-right">
+        <span class="test-label">ACADEMIC · TEST 01</span>
+        <button class="text-button" id="instructionsBtn">Instructions</button>
+      </div>
+    </header>
+
+    <main>
+      <section class="welcome-screen" id="welcomeScreen">
+        <div class="welcome-copy">
+          <span class="eyebrow">IELTS ACADEMIC READING</span>
+          <h1>Build your reading<br><em>confidence.</em></h1>
+          <p>Practise with three original IELTS-style passages, 37 questions and a full 60-minute test experience.</p>
+          <div class="welcome-stats">
+            <div><strong>03</strong><span>Passages</span></div>
+            <div><strong>37</strong><span>Questions</span></div>
+            <div><strong>60</strong><span>Minutes</span></div>
+          </div>
+          <button class="primary-button start-button" id="startBtn">Start full test <span>→</span></button>
+          <p class="small-note">Your timer starts when you begin. You can move between passages and questions at any time.</p>
+        </div>
+        <div class="welcome-art" aria-hidden="true">
+          <div class="art-card art-card-back"></div>
+          <div class="art-card art-card-front">
+            <div class="art-top"><span>READING TEST</span><span class="art-dot"></span></div>
+            <div class="art-lines"><i></i><i></i><i></i><i></i><i></i></div>
+            <div class="art-question"><b>01</b><span>Choose the correct answer</span><span class="art-check">✓</span></div>
+            <div class="art-question"><b>02</b><span>Complete the summary</span><span class="art-check">✓</span></div>
+            <div class="art-question"><b>03</b><span>Match the information</span><span class="art-empty"></span></div>
+          </div>
+          <div class="floating-note"><span>✦</span> Focus. Read. Achieve.</div>
+        </div>
+      </section>
+
+      <section class="test-screen hidden" id="testScreen">
+        <div class="test-toolbar">
+          <div class="toolbar-left">
+            <span class="live-dot"></span><span>TEST IN PROGRESS</span>
+            <span class="toolbar-divider"></span>
+            <span id="progressText">0 of 37 answered</span>
+          </div>
+          <div class="timer-wrap">
+            <span class="timer-caption">TIME LEFT</span>
+            <strong id="timer">60:00</strong>
+          </div>
+          <button class="submit-button" id="submitBtn">Submit test</button>
+        </div>
+
+        <div class="workspace">
+          <article class="reading-panel">
+            <div class="panel-heading">
+              <div><span class="eyebrow" id="passageKicker">READING PASSAGE 1</span><h2 id="passageTitle">The science of handedness</h2></div>
+              <span class="reading-time">Suggested: 20 min</span>
+            </div>
+            <div class="passage-content" id="passageContent"></div>
+          </article>
+
+          <div class="splitter" id="panelSplitter" role="separator" aria-label="Resize passage and question panels" aria-orientation="vertical" tabindex="0"></div>
+          <aside class="question-panel">
+            <div class="question-panel-head">
+              <div><span class="eyebrow">QUESTION PAPER</span><h2 id="questionRange">Questions 1–12</h2></div>
+              <span class="question-count" id="sectionCount">0 / 12</span>
+            </div>
+            <div class="question-instructions" id="questionInstructions"></div>
+            <div class="questions-list" id="questionsList"></div>
+            <div class="question-footer">
+              <button class="secondary-button" id="prevPassageBtn">← Previous</button>
+              <button class="primary-button" id="nextPassageBtn">Next passage →</button>
+            </div>
+          </aside>
+        </div>
+
+        <div class="bottom-navigation">
+          <div class="passage-tabs" role="tablist" aria-label="Reading passages">
+          <button class="passage-tab active" data-passage="0"><span>PASSAGE 01</span><strong>Questions 1–12</strong></button>
+          <button class="passage-tab" data-passage="1"><span>PASSAGE 02</span><strong>Questions 13–25</strong></button>
+          <button class="passage-tab" data-passage="2"><span>PASSAGE 03</span><strong>Questions 26–37</strong></button>
+        </div>
+          <div class="legend"><span><i class="legend-answered"></i> Answered</span><span><i class="legend-empty"></i> Unanswered</span><span><i class="legend-flag"></i> Flagged</span></div>
+          <div class="all-question-nav" id="allQuestionNav" aria-label="All question numbers"></div>
+          <button class="submit-button bottom-submit" id="bottomSubmitBtn">Submit test</button>
+        </div>
+      </section>
+
+      <section class="results-screen hidden" id="resultsScreen">
+        <div class="results-header">
+          <span class="eyebrow">TEST COMPLETED</span>
+          <h1>Your reading<br><em>report.</em></h1>
+          <p id="resultMessage">Your answers have been checked.</p>
+        </div>
+        <div class="score-layout">
+          <div class="score-card">
+            <span class="score-label">YOUR SCORE</span>
+            <div class="score-number"><strong id="scoreNumber">0</strong><span>/ 37</span></div>
+            <div class="score-track"><i id="scoreBar"></i></div>
+            <span class="score-percent" id="scorePercent">0% correct</span>
+          </div>
+          <div class="result-stats">
+            <div><span class="stat-icon correct-icon">✓</span><div><strong id="correctCount">0</strong><small>Correct answers</small></div></div>
+            <div><span class="stat-icon wrong-icon">×</span><div><strong id="wrongCount">0</strong><small>Incorrect answers</small></div></div>
+            <div><span class="stat-icon blank-icon">—</span><div><strong id="blankCount">0</strong><small>Not answered</small></div></div>
+          </div>
+        </div>
+        <div class="review-heading"><div><span class="eyebrow">LEARN FROM YOUR ATTEMPT</span><h2>Answer review</h2></div><button class="secondary-button" id="retakeBtn">Retake test ↻</button></div>
+        <div class="review-list" id="reviewList"></div>
+        <p class="disclaimer">This is an independent practice tool. The result is a raw practice score, not an official IELTS band score.</p>
+      </section>
+    </main>
+    <footer><span>IELTS READING PRACTICE HUB</span><span>Independent learning resource · Original practice content</span></footer>
+  </div>
+
+  <div class="modal-backdrop hidden" id="modalBackdrop">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
+      <button class="modal-close" id="modalClose" aria-label="Close">×</button>
+      <span class="eyebrow">BEFORE YOU FINISH</span>
+      <h2 id="modalTitle">Submit your test?</h2>
+      <p id="modalMessage">Once submitted, your answers will be scored and you will see your result.</p>
+      <div class="modal-actions"><button class="secondary-button" id="keepWorkingBtn">Keep working</button><button class="primary-button" id="confirmSubmitBtn">Submit now</button></div>
+    </div>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
